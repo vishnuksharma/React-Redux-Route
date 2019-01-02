@@ -15,6 +15,9 @@ const Header = props => (
         <NavItem eventKey={1} onClick={() => props.history.push('/')}>
           Attendance Form
         </NavItem>
+        <NavItem eventKey={2} onClick={() => props.history.push('/query-attendance')}>
+          Query Attendance
+        </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar> 

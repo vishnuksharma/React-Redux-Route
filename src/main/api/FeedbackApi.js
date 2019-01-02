@@ -11,3 +11,16 @@ export const processFeedbackSubmission = (data, callback) => {
   })
   .then(callback)
 }
+
+export const queryAttendanceByCommunityName = (communityName, callback) => {
+
+  const URL = `${process.env.REACT_APP_PROD_QUERY_API}/${communityName}`;
+
+  fetch(URL)
+    .then(res => {
+      if(res.status === 200) {
+        return res.json();
+      }
+    })
+    .then(callback)
+}
