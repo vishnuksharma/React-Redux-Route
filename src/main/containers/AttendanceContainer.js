@@ -27,7 +27,7 @@ class AttendanceContainer extends Component {
           Query Attendance
         </PageHeader> 
         <Row>
-          <Col xs={6} s={6} md={6} lg={6}>
+          <Col xs={10} s={10} md={8} lg={8}>
             {!searchInProgress && searchResponse == null && <AttendanceQueryForm onSubmit={this.handleSubmit}/> }
             {!searchInProgress && searchResponse && searchResponse.length !== 0 &&
                <AttendanceResultsTable data={searchResponse} resetQueryForm={this.resetQueryForm}/> 
