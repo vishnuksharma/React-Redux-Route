@@ -1,4 +1,4 @@
-import { SUBMIT_FEEDBACK, SUBMIT_FEEDBACK_SUCCESS, SUBMIT_FEEDBACK_FAILURE } from "../actions/ActionTypes";
+import { SUBMIT_FEEDBACK, SUBMIT_FEEDBACK_SUCCESS, SUBMIT_FEEDBACK_FAILURE, RESET_ATTENDANCE_FORM } from "../actions/ActionTypes";
 
 const initialState = {
   submissionInProgress: false,
@@ -17,6 +17,11 @@ const feedbackReducer = (state = initialState, action) => {
       return {
         ...state,
         submissionInProgress: action.submissionInProgress,
+        submissionSuccess: action.submissionSuccess
+      }
+    case RESET_ATTENDANCE_FORM:
+      return {
+        ...state,
         submissionSuccess: action.submissionSuccess
       }
     default:

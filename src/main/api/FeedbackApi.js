@@ -12,11 +12,18 @@ export const processFeedbackSubmission = (data, callback) => {
   .then(callback)
 }
 
-export const queryAttendanceByCommunityName = (communityName, callback) => {
+export const queryAttendanceByCommunityName = (query, callback) => {
+  let url =  `${process.env.REACT_APP_PROD_QUERY_API}`;
 
-  const URL = `${process.env.REACT_APP_PROD_QUERY_API}/${communityName}`;
+  if(query.communityName && query.datetime) {
+    url += `?communityName=${query.communityName}&datetime=${query.datetime}`;
+  } else if(query.communityName) {
+    url += `?communityName=${query.communityName}`;
+  } else if(query.datetime) {
+    url += `?datetime=${query.datetime}`;
+  }
 
-  fetch(URL)
+  fetch(url)
     .then(res => {
       if(res.status === 200) {
         return res.json();

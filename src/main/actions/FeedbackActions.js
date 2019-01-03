@@ -1,5 +1,5 @@
-import { SUBMIT_FEEDBACK, SUBMIT_FEEDBACK_SUCCESS, SUBMIT_FEEDBACK_FAILURE } from "./ActionTypes";
-import { processFeedbackSubmission, doTest } from "../api/FeedbackApi";
+import { SUBMIT_FEEDBACK, SUBMIT_FEEDBACK_SUCCESS, SUBMIT_FEEDBACK_FAILURE, RESET_ATTENDANCE_FORM } from "./ActionTypes";
+import { processFeedbackSubmission } from "../api/FeedbackApi";
 
 const submittingFeedback = () => {
   return {
@@ -29,12 +29,18 @@ export const submitFeedback = (data) => {
     dispatch(submittingFeedback());
 
     processFeedbackSubmission(data, response => {
-      console.log(response)
       if(response.status === 200) {
         dispatch(submitFeedbackSuccess());
       } else {
         dispatch(submittingFeedbackFailure());
       }
     })
+  }
+}
+
+export const resetAttendanceForm = () => {
+  return {
+    type: RESET_ATTENDANCE_FORM,
+    submissionSuccess: false
   }
 }

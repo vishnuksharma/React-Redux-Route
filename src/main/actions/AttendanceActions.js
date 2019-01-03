@@ -24,11 +24,11 @@ const queryAttendanceFailure = () => {
   }
 }
 
-export const submitAttendanceQuery = (communityName) => {
+export const submitAttendanceQuery = (query) => {
   return dispatch => {
     dispatch(queryingAttendance());
 
-    queryAttendanceByCommunityName(communityName, response => {
+    queryAttendanceByCommunityName(query, response => {
       if(response) {
         dispatch(queryAttendanceSuccess(response));
       } else {

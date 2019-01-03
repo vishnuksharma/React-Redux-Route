@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {PageHeader, Row, Col} from 'react-bootstrap';
+import {PageHeader, Row, Col, Button} from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import AttendanceQueryForm from '../components/form/QueryAttendanceForm';
 import * as attendanceActions from '../actions/AttendanceActions';
@@ -9,7 +9,7 @@ import AttendanceResultsTable from '../components/attendanceQuery/AttendanceResu
 class AttendanceContainer extends Component {
 
   handleSubmit = values => {
-    this.props.attendanceActions.submitAttendanceQuery(values.communityName);  
+    this.props.attendanceActions.submitAttendanceQuery(values);  
   } 
 
   resetQueryForm = event => {
@@ -29,8 +29,16 @@ class AttendanceContainer extends Component {
         <Row>
           <Col xs={6} s={6} md={6} lg={6}>
             {!searchInProgress && searchResponse == null && <AttendanceQueryForm onSubmit={this.handleSubmit}/> }
-            {!searchInProgress && searchResponse && <AttendanceResultsTable data={searchResponse} resetQueryForm={this.resetQueryForm}/> }
+            {!searchInProgress && searchResponse && searchResponse.length !== 0 &&
+               <AttendanceResultsTable data={searchResponse} resetQueryForm={this.resetQueryForm}/> 
+            }
             {searchInProgress && <p>Searching...</p> }
+            {!searchInProgress && searchResponse && searchResponse.length === 0 && 
+              <div>
+                <h2>No results</h2><br/>
+                <Button type="submit" bsStyle="warning" onClick={this.resetQueryForm}>Search Again</Button>
+              </div> 
+            }
           </Col>
         </Row>
       </div>

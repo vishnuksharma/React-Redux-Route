@@ -6,6 +6,5 @@ export const validateAttendanceForm = values => {
   if (values.communityName === undefined || values.communityName === 'Please Select') {
     errors.communityName = 'Required'
   }
-  console.log(errors)
   return errors;
 }
